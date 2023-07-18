@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Ticket Management System</title>
+</head>
+<style>
+.header {
+  padding: 10px;
+  text-align: center;
+  background: black;
+  color: white;
+  font-size: 20px;
+  text-align: left;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+.topnav {
+  background-color: #0096FF;
+  color: white;
+}
+</style>
+<body>
+<div class="topnav">
+  <a class="active" href="#home">Ticket Traker Application</a>
+  <a href="/tkt/tktList">Tickets</a>
+  <a href="/tkt/showFormForAdd">New Ticket</a>
+</div>
+<!--<h4 class="header">Ticket Traker Application</h2>-->
+<div class="container">
+	<h3>List of Tickets</h3>
+	<hr>
+
+	
+	<!-- Add a button
+	<a th:href="@{/tkt/showFormForAdd}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Ticket
+	</a> -->
+	
+	<form th:action="@{/tkt/search}">
+		<input type="text" name="keyword" th:value="${keyword}" placeholder="Search"/>						
+		<button type="submit" class="btn btn-info btn-sm ml-2 mr-1" style="background-color:blue;color:white;">Search</button>
+	</form>
+	<br>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Ticket Title</th>
+				<th>Ticket Short Description</th>
+				<th>Ticket Created On</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tkt : ${ticketList}">
+			
+				<td th:text="${tkt.title}" />	
+				<td th:text="${tkt.description}" />	
+				<td th:text="${tkt.content}" />
+				<td th:text="${tkt.createdOn}" />	
+				
+				<td>
+				<div class="row">
+				
+					<div class="col-small">
+					<!-- Add "update" button/link -->
+					<form action="#" th:action="@{/tkt/showFormForUpdate}" method="POST">
+						<input type="hidden" name="tktId" th:value="${tkt.id}" />						
+						<button type="submit" style="background-color:blue; width: 80px;" class="btn btn-info btn-sm ml-3 mr-2">Edit</button>
+					</form>
+					</div>
+					
+					<div class="col-small">
+					<!-- Add "delete" button/link -->					
+					<form action="#" th:action="@{/tkt/delete}" method="POST">
+					
+						<input type="hidden" name="tktId" th:value="${tkt.id}" />						
+						<button type="submit" style="width: 80px;" class="btn btn-danger btn-sm"
+								onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+								Delete
+						</button>
+					</form>
+					</div>
+					
+					<div class="col-small">
+					<!-- Add "update" button/link -->
+					<!--<form action="#" th:action="@{/tkt/tktList}" method="GET">
+						<input type="hidden" name="tktId" th:value="${tkt.id}" />						
+						<button type="submit" class="btn btn-info btn-sm ml-3 mr-1">View</button>
+					</form>-->
+					</div>
+					
+				</div>	
+				</td>
+				
+				
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+

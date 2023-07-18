@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+	<title>Save Ticket</title>
+</head>
+<style>
+.header {
+  padding: 10px;
+  text-align: center;
+  background: black;
+  color: white;
+  font-size: 20px;
+  text-align: left;
+}
+span { vertical-align: middle; }
+#first {
+    font-size: 20px;   
+}
+
+#second {
+	 padding-left: 20px;
+    font-size: 12px;
+}
+.center {
+  
+  border: 1px solid black;
+  width: 600px;
+  outline: solid 1px black;
+  margin: 80px;
+  padding:30px;
+  margin-left: 300px;
+}
+
+ .editor {
+      border: 1px solid #ccc;
+      min-height: 200px;
+      padding: 10px;
+    }
+    
+    
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+.topnav {
+  background-color: #0096FF;
+  color: white;
+}
+</style>
+
+<body>
+<div class="topnav">
+  <a class="active" href="#home">Ticket Traker Application</a>
+  <a href="/tkt/tktList">Tickets</a>
+  <a href="/tkt/showFormForAdd">New Ticket</a>
+</div>
+<!--<h4 class="header">Ticket Tracker System</h2>-->
+	<div class="center" >
+	
+		<!--<h3>Ticket</h3>-->
+		<h3 align="center" th:text="${heading}"></h3>
+		<!--<hr>-->
+	
+	
+		<form action="#" th:action="@{/tkt/save}"
+						 th:object="${tkt}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<p>Title</p>
+			<input type="text" th:field="*{title}"
+					class="form-control mb-4 col-12" placeholder="Enter Ticket Title">
+			<p>Short Description</p>
+			<input type="text" th:field="*{description}"
+					class="form-control mb-4 col-12" placeholder="Enter Ticket Description">
+			
+			<label> Content </label> <br> 
+				<textarea name="content" th:field="*{content}" rows="2" cols="60"></textarea>
+			<script>
+			 CKEDITOR.replace('content', {
+				 enterMode: CKEDITOR.ENTER_BR,
+				 shiftEnterMode: CKEDITOR.ENTER_BR 
+			 });
+			</script>
+				
+				<br>
+			<button style="background-color:blue;" type="submit"  class="btn btn-info col-2">Submit</button>
+						
+		</form>
+	
+		<!--<hr>-->
+		
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
