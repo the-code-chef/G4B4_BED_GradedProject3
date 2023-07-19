@@ -1,6 +1,5 @@
 package com.gl.entity;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,11 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "ticket")
@@ -34,11 +30,8 @@ public class Ticket {
 	@Column(name = "content")
 	private String content;
 	
-	@Column(name = "createdOn")
-//	@DateTimeFormat(pattern="dd-MM-yyyy")
-//	@Column(name = "createdOn", nullable = false, updatable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @CreatedDate
+	@Column(name = "created_on")
+	@CreationTimestamp
 	private Date createdOn;
 
 	public Ticket() {
@@ -50,7 +43,7 @@ public class Ticket {
 		this.title = title;
 		this.description = desc;
 		this.content = content;
-		this.createdOn = createdDt;
+		this.createdOn = new Date();
 		System.out.println("dt=>"+this.createdOn);
 	}
 
@@ -58,7 +51,7 @@ public class Ticket {
 		this.title = title;
 		this.description = desc;
 		this.content = content;
-		this.createdOn = createdDt;
+		this.createdOn = new Date();
 		System.out.println("dt1=>"+this.createdOn);
 	}
 
