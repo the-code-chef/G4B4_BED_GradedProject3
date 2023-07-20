@@ -24,10 +24,7 @@ public class TicketServiceImpl implements TicketService {
 	public List<Ticket> findAll() {
 
 		List<Ticket> theTkt = tktRepository.findAll();
-		for(Ticket tkt : theTkt) {
-			System.out.println("theTkt dt=>"+tkt.getCreatedOn());
-		}
-		
+	
 		return theTkt;
 	}
 
@@ -39,6 +36,9 @@ public class TicketServiceImpl implements TicketService {
 
 		if (result.isPresent()) {
 			theTkt = result.get();
+			System.out.println("theTkt. = "+result.get().getCreatedOn());
+			System.out.println("theTkt.getCreatedOn() = "+theTkt.getCreatedOn());
+			System.out.println("theTkt.getTitle() = "+theTkt.getTitle());
 		} else {
 			// we didn't find the tkt
 			throw new RuntimeException("Did not find ticket id - " + theId);
@@ -49,11 +49,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void save(Ticket thetheTkt) {
-//		java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-//		thetheTkt.setCreatedOn(date);
-//		LocalDate localDate = LocalDate.now();
-//		thetheTkt.setCreatedOn(localDate);
-		System.out.println("date=>"+thetheTkt.getCreatedOn());
+		System.out.println("Date =>"+thetheTkt.getCreatedOn());
 		tktRepository.save(thetheTkt);
 	}
 

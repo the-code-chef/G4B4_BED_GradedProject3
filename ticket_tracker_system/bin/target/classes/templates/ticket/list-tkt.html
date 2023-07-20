@@ -77,11 +77,11 @@
 		
 		<tbody>
 			<tr th:each="tkt : ${ticketList}">
-				<td th:text="${tkt.id}" />	
+			
 				<td th:text="${tkt.title}" />	
 				<td th:text="${tkt.description}" />	
-				<td th:text="${#dates.format(tkt.createdOn, 'dd-MM-yyyy')}"/>	
-				<!--${tkt.createdOn}" />-->	
+				<td th:text="${tkt.content}" />
+				<td th:text="${tkt.createdOn}" />	
 				
 				<td>
 				<div class="row">
@@ -100,7 +100,7 @@
 					
 						<input type="hidden" name="tktId" th:value="${tkt.id}" />						
 						<button type="submit" style="width: 80px;" class="btn btn-danger btn-sm"
-								onclick="if (!(confirm('Are you sure you want to delete this ticket?'))) return false">
+								onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
 								Delete
 						</button>
 					</form>

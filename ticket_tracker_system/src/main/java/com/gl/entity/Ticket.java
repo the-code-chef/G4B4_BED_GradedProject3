@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ticket")
@@ -30,8 +33,10 @@ public class Ticket {
 	@Column(name = "content")
 	private String content;
 	
-	@Column(name = "created_on")
+	@Column(name = "created_on",updatable = false)
 	@CreationTimestamp
+	@DateTimeFormat (pattern="dd-MM-YYYY")
+    @Temporal(TemporalType.DATE)
 	private Date createdOn;
 
 	public Ticket() {
@@ -44,7 +49,6 @@ public class Ticket {
 		this.description = desc;
 		this.content = content;
 		this.createdOn = new Date();
-		System.out.println("dt=>"+this.createdOn);
 	}
 
 	public Ticket(String title, String desc, String content, Date createdDt) {
@@ -52,7 +56,6 @@ public class Ticket {
 		this.description = desc;
 		this.content = content;
 		this.createdOn = new Date();
-		System.out.println("dt1=>"+this.createdOn);
 	}
 
 	public int getId() {
@@ -95,6 +98,5 @@ public class Ticket {
 		this.createdOn = createdOn;
 	}
 
-	
 
 }

@@ -29,9 +29,6 @@ public class TicketController {
 		
 		// get Ticket from database
 		List<Ticket> ticketList = tktService.findAll();
-		for(Ticket tk : ticketList) {
-			System.out.println("tk=>"+tk.getCreatedOn());
-		}
 		
 		// add to the spring model
 		theModel.addAttribute("ticketList", ticketList);
@@ -68,7 +65,7 @@ public class TicketController {
 	
 	@PostMapping("/save")
 	public String saveEmp(@ModelAttribute("tkt") Ticket theTkt) {
-		
+		System.out.println("theTkt=>"+theTkt.getCreatedOn());
 		tktService.save(theTkt);
 		
 		return "redirect:/tkt/tktList";
