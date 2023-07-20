@@ -6,9 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TicketTrackerSystem {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TicketTrackerSystem.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(TicketTrackerSystem.class, args);
+    }
 }
-

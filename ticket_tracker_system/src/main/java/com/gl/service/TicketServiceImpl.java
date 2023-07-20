@@ -12,65 +12,63 @@ import com.gl.entity.Ticket;
 
 @Service
 public class TicketServiceImpl implements TicketService {
-	
-	private TicketRepository tktRepository;
 
-	@Autowired
-	public TicketServiceImpl(TicketRepository thetktRepository) {
-		tktRepository = thetktRepository;
-	}
+    private TicketRepository tktRepository;
 
-	@Override
-	public List<Ticket> findAll() {
+    @Autowired
+    public TicketServiceImpl(TicketRepository thetktRepository) {
+        tktRepository = thetktRepository;
+    }
 
-		List<Ticket> theTkt = tktRepository.findAll();
-	
-		return theTkt;
-	}
+    @Override
+    public List<Ticket> findAll() {
 
-	@Override
-	public Ticket findById(int theId) {
-		Optional<Ticket> result = tktRepository.findById(theId);
+        List<Ticket> theTkt = tktRepository.findAll();
 
-		Ticket theTkt = null;
+        return theTkt;
+    }
 
-		if (result.isPresent()) {
-			theTkt = result.get();
-			System.out.println("theTkt. = "+result.get().getCreatedOn());
-			System.out.println("theTkt.getCreatedOn() = "+theTkt.getCreatedOn());
-			System.out.println("theTkt.getTitle() = "+theTkt.getTitle());
-		} else {
-			// we didn't find the tkt
-			throw new RuntimeException("Did not find ticket id - " + theId);
-		}
+    @Override
+    public Ticket findById(int theId) {
+        Optional<Ticket> result = tktRepository.findById(theId);
 
-		return theTkt;
-	}
+        Ticket theTkt = null;
 
-	@Override
-	public void save(Ticket thetheTkt) {
-		System.out.println("Date =>"+thetheTkt.getCreatedOn());
-		tktRepository.save(thetheTkt);
-	}
+        if (result.isPresent()) {
+            theTkt = result.get();
+            System.out.println("theTkt. = " + result.get().getCreatedOn());
+            System.out.println("theTkt.getCreatedOn() = " + theTkt.getCreatedOn());
+            System.out.println("theTkt.getTitle() = " + theTkt.getTitle());
+        } else {
+            // we didn't find the tkt
+            throw new RuntimeException("Did not find ticket id - " + theId);
+        }
 
-	@Override
-	public void deleteById(int theId) {
-		tktRepository.deleteById(theId);
-	}
+        return theTkt;
+    }
 
-	@Override
-	public List<Ticket> searchTicket(String keyword) {
-		List<Ticket> tickets = null;
-		if (keyword != null) {
-			System.out.println("keyword=>"+keyword);
-			tickets = tktRepository.searchTicket(keyword);
-			System.out.println("tickets=>"+tickets.size());
+    @Override
+    public void save(Ticket thetheTkt) {
+        System.out.println("Date =>" + thetheTkt.getCreatedOn());
+        tktRepository.save(thetheTkt);
+    }
+
+    @Override
+    public void deleteById(int theId) {
+        tktRepository.deleteById(theId);
+    }
+
+    @Override
+    public List<Ticket> searchTicket(String keyword) {
+        List<Ticket> tickets = null;
+        if (keyword != null) {
+            System.out.println("keyword=>" + keyword);
+            tickets = tktRepository.searchTicket(keyword);
+            System.out.println("tickets=>" + tickets.size());
             return tickets;
         }
-		
-		System.out.println("tickets1=>"+tickets.size());
-		return tickets;
-	}
-	     
 
+        System.out.println("tickets1=>" + tickets.size());
+        return tickets;
+    }
 }
