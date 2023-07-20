@@ -5,8 +5,10 @@ The button for "Update" makes use a form for POSTing data. The form passed emplo
 
 To create a db, execute below command:
 
-```create database if not exists ticket_management;
+create database if not exists ticket_management;
 show databases;
 use ticket_management;create table ticket_tracker(id int primary key AUTO_INCREMENT, tkt_title varchar(50) NOT NULL, tkt_short_desc varchar(50)  NOT NULL,
 tkt_content varchar(50) NOT NULL,created_by date NOT NULL);
-describe ticket_tracker;```
+describe ticket_tracker;
+
+For screenshots & demo, refer here -> https://drive.google.com/drive/folders/1IHWeBdUJeye6PYTn-0vpuhiV3j2nA1p2
